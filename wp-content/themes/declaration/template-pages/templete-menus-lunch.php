@@ -80,7 +80,7 @@ get_header();
                         <?php // if (have_posts()) : ?>
                         <?php
 //                    while (have_posts()) : the_post();
-                        $class = '';
+                        $class = ''; 
                         foreach (get_field("m_i_location") as $k => $v) {
                             if ($v == "North Snow") {
                                 $class .= " location1";
@@ -89,16 +89,15 @@ get_header();
                                 $class .= " location2";
                             }
                         }
-                        foreach (get_field("m_i_days") as $k => $v) {
-                            if ($v == "MONDAY – WEDNESDAY") {
-                                $class .= " day1";
-                            }
-                            if ($v == "THURSDAY – SUNDAY") {
-                                $class .= " day2";
-                            }
-                        }
+//                        foreach (get_field("m_i_days") as $k => $v) {
+//                            if ($v == "MONDAY – WEDNESDAY") {
+//                                $class .= " day1";
+//                            }
+//                            if ($v == "THURSDAY – SUNDAY") {
+//                                $class .= " day2";
+//                            }
+//                        }
                         ?>
-
                         <div class="menu-items-details row <?php echo $class; ?>">
                             <div class="menu-left-section col-md-7 col-lg-7">
                                 <h1><?php the_title(); ?></h1>
@@ -158,7 +157,6 @@ get_header();
                         <!--</div>-->
                     </div>
                 </div>
-
                 <?php
             }
         }

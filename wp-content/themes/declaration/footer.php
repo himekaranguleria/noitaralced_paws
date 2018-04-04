@@ -44,7 +44,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                online ordering coming soon
+                <h2>  online ordering coming soon</h2>
             </div>
         </div>
     </div>
@@ -89,7 +89,7 @@
         $('.es_textbox, .es_button').wrapAll('<div class="main-form" />');
     });
     (function ($) {
-        $(".postitem,.menu-items-details,.menu-week-sec,.titlePannel").css("display", "none");
+        $(".postitem,.menu-items-details,.menu-week-sec,.titlePannel,.daysPannel").css("display", "none");
         $(".postitem").slice(0, 4).show();
         if ($(".postitem").length < 3) {
             $(".load-more-about").fadeOut('slow');
@@ -101,38 +101,67 @@
                 $(".load-more-about").fadeOut('slow');
             }
         });
-        $("#reserveTable").click(function () {
-            $('html, body').animate({
-                scrollTop: $(".reservation-today").offset().top
-            }, 2000);
-        });
-        $("#reserveTable1").click(function () {
-            $('html, body').animate({
-                scrollTop: $(".reservation-today").offset().top
-            }, 2000);
-        });
+//        $("#reserveTable").click(function () {
+//            $('html, body').animate({
+//                scrollTop: $(".reservation-today").offset().top
+//            }, 2000);
+//        });
+//        $("#reserveTable1").click(function () {
+//            $('html, body').animate({
+//                scrollTop: $(".reservation-today").offset().top
+//            }, 2000);
+//        });
         $(".location").click(function () {
+            $(".menu-items-details").hide();
+            $(".titlePannel").show();
             var id = $(this).attr("id");
             console.log(id);
             $(".location").removeClass("locationSelected");
             $(this).addClass("locationSelected");
-            $(".menu-items-section,.menu-items-section,.titlePannel").hide();
             $(".menu-week-sec").show();
-            $(".day").removeClass("daySelected");
+            $("." + id).show();
         });
-        $(".day").click(function () {
-            $(".titlePannel").show();
-            $(".menu-items-details").hide();
-            $(".day").removeClass("daySelected");
-            $(this).addClass("daySelected");
-            console.log("day");
-            $(".menu-left-week,.menu-items-section").show();
-            var day_id = $(this).attr("id");
-            var location_id = $(".locationSelected").attr("id");
-            console.log(day_id);
-            console.log(location_id);
-            $("." + day_id + "." + location_id).show();
-        });
+//        $(".day").click(function () {
+//
+//            $(".menu-items-details").hide();
+//            $(".day").removeClass("daySelected");
+//            $(this).addClass("daySelected");
+//            console.log("day");
+//            $(".menu-left-week,.menu-items-section").show();
+//            var day_id = $(this).attr("id");
+//            var location_id = $(".locationSelected").attr("id");
+//            console.log(day_id);
+//            console.log(location_id);
+//            $("." + day_id + "." + location_id).show();
+//        });
+        /**
+         * backup of location code
+         */
+//        $(".location").click(function () {
+//            var id = $(this).attr("id");
+//            console.log(id);
+//            $(".location").removeClass("locationSelected");
+//            $(this).addClass("locationSelected");
+//            $(".menu-items-section,.menu-items-section,.titlePannel").hide();
+//            $(".menu-week-sec").show();
+//            $(".day").removeClass("daySelected");
+//        });
+//        $(".day").click(function () {
+//            $(".titlePannel").show();
+//            $(".menu-items-details").hide();
+//            $(".day").removeClass("daySelected");
+//            $(this).addClass("daySelected");
+//            console.log("day");
+//            $(".menu-left-week,.menu-items-section").show();
+//            var day_id = $(this).attr("id");
+//            var location_id = $(".locationSelected").attr("id");
+//            console.log(day_id);
+//            console.log(location_id);
+//            $("." + day_id + "." + location_id).show();
+//        });
+        /*
+         * End
+         */
     }(jQuery));
     jQuery(document).ready(function ($) {
         jQuery(".menu-kitchen").click(function () {
@@ -193,13 +222,52 @@
 //                    }
 //                });
     });
+    // Scroll for diffrent pages to Reserve a Table section
+    var jump = function (e)
+    {
+        if (e) {
+            e.preventDefault();
+            var target = jQuery(this).attr("href");
+        } else {
+            var target = location.hash;
+        }
+        jQuery('html,body').animate(
+                {
+                    scrollTop: jQuery(target).offset().top
+                }, 2000, function ()
+        {
+            location.hash = target;
+        });
+    }
+    jQuery(document).ready(function ()
+    {
+        jQuery('a[href^=#]').bind("click", jump);
+        if (location.hash) {
+            setTimeout(function () {
+                jQuery('html, body').scrollTop(0).show();
+                jump();
+            }, 0);
+        } else {
+            jQuery('html, body').show();
+        }
+    });
     jQuery(function ($) {
-        $('.privacy-policy').click(function () {
-            $("input[type='checkbox']:checked").change(function () {
+        $('input[type="checkbox"]').click(function () {
+            if ($(this).prop("checked") == true) {
                 $('.cater-btn-location.column-2').show();
-            });
+            } else if ($(this).prop("checked") == false) {
+                $('.cater-btn-location.column-2').hide();
+            }
         });
     });
+//    jQuery(function($) {
+//    $('.privacy-policy').click(function() {
+//        $("input[type='checkbox']:checked").change(function() {
+//            $('.cater-btn-location.column-2').show();
+//    });
+//    });
+//}); 
+
 </script>
 <?php wp_footer(); ?>
 </body>

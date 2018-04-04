@@ -73,7 +73,7 @@
 
 </div>-->
 
-<div id="myCarousel" class="carousel slide slide-sec" data-ride="carousel">
+<div id="myCarousel" class="homepage_silder carousel slide slide-sec" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -124,7 +124,7 @@
 </div>
 
 
-<div class="reservation-today">
+<div class="reservation-today" id="reservation-today">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -176,8 +176,8 @@
                                     </div>
                                     <div class="col-lg-5 col-md-5 blog-events">
                                         <h4 class="top-section-crsl"><?php echo $page_title; ?></h4>
-                                        <h4><?php the_title(); ?></h4>
-                                        <p><?php echo wp_trim_words(get_the_content(), 50, '...'); ?></p>
+                                        <h4><a href="<?php echo get_post_permalink(); ?>"><?php echo wp_trim_words(get_the_title(), 6, '..'); ?></a></h4>
+                                        <p><?php echo wp_trim_words(get_the_content(), 47, '...'); ?></p>
                                         <?php // the_content();  ?>
                                         <div class="read-more"><a href="<?php echo get_post_permalink(); ?>"> Read More</a></div>
                                     </div>
